@@ -1,0 +1,15 @@
+# Bỏ qua môi trường ảo
+.venv/
+venv/
+
+# Bỏ qua file tạm Python
+__pycache__/
+*.pyc
+
+# Bỏ qua cache mô hình
+.cache/
+*.bin
+*.pt
+
+# Bỏ qua file kết quả
+grammar_corrections.csv
