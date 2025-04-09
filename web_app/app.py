@@ -3,19 +3,20 @@ from happytransformer import HappyTextToText, TTSettings
 import pandas as pd
 import os
 # 🛠 GỌI NGAY ĐẦU TIÊN
-st.set_page_config(page_title="Grammar Correction", page_icon="📝")
+st.set_page_config(page_title="Q&A ngữ pháp", page_icon="📝")
 
 # Cache mô hình để không load lại mỗi lần nhấn nút
 @st.cache_resource
 def load_model():
-    return HappyTextToText("T5", "vennify/t5-base-grammar-correction")
+    hf_token = os.environ.get("HF_TOKEN")
+    return HappyTextToText("T5", "vennify/t5-base-grammar-correction", use_auth_token=hf_token)
 
 # Khởi tạo mô hình
 happy_tt = load_model()
 args = TTSettings(num_beams=5, min_length=1)
 
 # Giao diện web
-st.title("📝 Grammar Correction App")
+st.title("📝 Hỏi đáp")
 st.markdown("Nhập câu sai ngữ pháp vào bên dưới và nhấn **Sửa lỗi**:")
 
 input_text = st.text_area("✍️ Câu cần sửa:", height=150)
